@@ -10,7 +10,7 @@ export interface MarketTick {
 
 export interface MarketSnapshot {
   type: 'snapshot'
-  prices: Record<Symbol, number>
+  prices: Partial<Record<Symbol, number>>
   timestamp: number
 }
 

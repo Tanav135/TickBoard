@@ -18,7 +18,7 @@ const prices: Record<Symbol, number> = {
 const clients = new Map<WebSocket, Set<Symbol>>()
 
 function createSnapshot(symbols: Set<Symbol>): MarketSnapshot {
-  const snapshotPrices = {} as Record<Symbol, number>
+  const snapshotPrices: Partial<Record<Symbol, number>> = {}
 
   for (const symbol of symbols) {
     snapshotPrices[symbol] = prices[symbol]
