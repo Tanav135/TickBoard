@@ -1,6 +1,7 @@
 
 import { Profiler, useEffect } from 'react'
 import { WatchlistRow } from './features/watchlist/WatchlistRow'
+import { OptionChainPreview } from './features/options/OptionChainPreview'
 import { marketConnection } from './services/marketConnection'
 import { useMarketStore } from './stores/marketStore'
 import type { Symbol } from './types/market'
@@ -50,7 +51,9 @@ function App() {
               <p className="text-sm text-gray-400">
                 Paper Trading Dashboard
               </p>
-              <h1 className="mt-1 text-3xl font-bold">TickBoard</h1>
+              <h1 className="mt-1 text-3xl font-bold">
+                TickBoard
+              </h1>
             </div>
 
             <span
@@ -65,6 +68,7 @@ function App() {
             </span>
           </header>
 
+          {/* Market watchlist */}
           <section className="overflow-hidden rounded-xl border border-gray-800 bg-[#111820]">
             <div className="border-b border-gray-800 p-4">
               <h2 className="font-semibold">Market Watchlist</h2>
@@ -80,27 +84,32 @@ function App() {
                     <th className="px-4 py-3">Symbol</th>
                     <th className="px-4 py-3 text-right">LTP</th>
                     <th className="px-4 py-3 text-right">Change</th>
-                    <th className="px-4 py-3 text-right">Data status</th>
+                    <th className="px-4 py-3 text-right">
+                      Data status
+                    </th>
                   </tr>
                 </thead>
 
                 <tbody>
-                 {SYMBOLS.map((symbol) => (
-                  <Profiler
-                    key={symbol}
-                    id={`WatchlistRow-${symbol}`}
-                    onRender={onRender}
-                  >
-                    <WatchlistRow
-                      symbol={symbol}
-                      isStale={isStale}
-                    />
-                  </Profiler>
-                ))}
+                  {SYMBOLS.map((symbol) => (
+                    <Profiler
+                      key={symbol}
+                      id={`WatchlistRow-${symbol}`}
+                      onRender={onRender}
+                    >
+                      <WatchlistRow
+                        symbol={symbol}
+                        isStale={isStale}
+                      />
+                    </Profiler>
+                  ))}
                 </tbody>
               </table>
             </div>
           </section>
+
+          {/* Options chain preview */}
+          <OptionChainPreview />
         </div>
       </main>
     </Profiler>
